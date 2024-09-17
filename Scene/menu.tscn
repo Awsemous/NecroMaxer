@@ -1,0 +1,201 @@
+[gd_scene load_steps=9 format=3 uid="uid://2naqid61dvb8"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_2sijv"]
+[ext_resource type="AudioStream" uid="uid://bvxvbf7trp3mf" path="res://Audio/3-Day-Game-Sample.mp3" id="2_clilf"]
+[ext_resource type="AudioStream" uid="uid://1xqenfmmigne" path="res://Audio/ui_select.wav" id="2_yv1ou"]
+[ext_resource type="FontFile" uid="uid://bldje2la5fdp4" path="res://Font/GrimoireOfDeath-Italic.ttf" id="3_eaccv"]
+
+[sub_resource type="Animation" id="Animation_0idq2"]
+resource_name = "Fade In"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gc438"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n2mwr"]
+_data = {
+"Fade In": SubResource("Animation_0idq2"),
+"RESET": SubResource("Animation_gc438")
+}
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cijwl"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 104.0
+offset_top = -40.0
+offset_right = 104.0
+offset_bottom = -40.0
+grow_vertical = 0
+script = ExtResource("1_2sijv")
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_yv1ou")
+volume_db = -10.559
+bus = &"SFX"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_clilf")
+autoplay = true
+mix_target = 1
+bus = &"Music"
+parameters/looping = true
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -105.0
+offset_top = -610.0
+offset_right = -65.0
+offset_bottom = -570.0
+scale = Vector2(28.8948, 340.573)
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -84.0
+offset_top = -588.0
+offset_right = -44.0
+offset_bottom = -548.0
+scale = Vector2(27.8595, 15.198)
+color = Color(0.508579, 0.238895, 0.0454945, 1)
+
+[node name="Node2D" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Node2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 186.0
+offset_top = -581.0
+offset_right = 1144.0
+offset_bottom = -139.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.968627, 0.486275, 0.105882, 1)
+theme_override_fonts/normal_font = ExtResource("3_eaccv")
+theme_override_fonts/italics_font = ExtResource("3_eaccv")
+theme_override_font_sizes/bold_italics_font_size = 1
+theme_override_font_sizes/normal_font_size = 131
+text = "						                         Necromaxer"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Node2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 88.0
+offset_top = -589.0
+offset_right = 1046.0
+offset_bottom = -122.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0, 0.105882, 1)
+theme_override_fonts/normal_font = ExtResource("3_eaccv")
+theme_override_fonts/italics_font = ExtResource("3_eaccv")
+theme_override_font_sizes/bold_italics_font_size = 1
+theme_override_font_sizes/normal_font_size = 131
+text = "	
+	Necromaxer"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_n2mwr")
+}
+autoplay = "Fade In"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 371.0
+offset_top = -193.0
+offset_right = 546.0
+offset_bottom = -3.0
+size_flags_horizontal = 0
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.8, 0.443137, 0, 1)
+theme_override_fonts/font = ExtResource("3_eaccv")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cijwl")
+text = "Start"
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.8, 0.443137, 0, 1)
+theme_override_fonts/font = ExtResource("3_eaccv")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cijwl")
+text = "Options"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.8, 0.443137, 0, 1)
+theme_override_fonts/font = ExtResource("3_eaccv")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_cijwl")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cijwl")
+text = "Quit"
+
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
